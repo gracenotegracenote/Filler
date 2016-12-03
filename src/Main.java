@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.GameMap;
 import models.JSONParser;
 import models.Region;
 import models.RegionJson;
@@ -37,15 +38,6 @@ public class Main extends Application {
 		}
 
 		// Finding neighbours for each region (essentially this is building a graph)
-		for (Region region: regions) {
-			region.populateNeighbours(regions);
-
-			System.out.print(region.getName() + " - ");
-			for (Region neighbour: region.getNeighbours()) {
-				System.out.print(neighbour.getName() + ", ");
-			}
-
-			System.out.println();
-		}
+		GameMap map = new GameMap(regions);
 	}
 }

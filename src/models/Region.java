@@ -15,6 +15,9 @@ public class Region {
 	private List <Coordinates> holes;
 	private List<Region> neighbours;
 
+	private Player player;
+	private String color;
+
 
 	public Region() {
 		currentId++;
@@ -88,8 +91,12 @@ public class Region {
 	}
 
 
+	public String getColor() {
+		return player != null ? player.getColor() : color;
+	}
+
+
 	public boolean isNeighbour(Region region) {
-		// TODO: do
 		for (Coordinates boundary : this.boundary) {
 			for (Coordinates boundary2 : region.getBoundary()) {
 				if (boundary.equals(boundary2)) {
