@@ -19,12 +19,16 @@ public class GameMap {
 			region.populateNeighbours(regions);
 		}
 
-		double minX = Double.MIN_VALUE;
-		double minY = Double.MIN_VALUE;
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
 
 		ColorGenerator generator = new ColorGenerator();
 		for (Region region: regions) {
 			for (Point point : region.getBoundary()) {
+				// rotating map
+				point.setX(-1 * point.getX());
+				point.setY(-1 * point.getY());
+				
 				if (point.getX() < minX) {
 					minX = point.getX();
 				}
@@ -51,7 +55,40 @@ public class GameMap {
 	}
 
 
-	public void makeMove(Region region) {
-		// TODO: change color of all the neighbours
+	public void makeMove(Player player, Region region) {
+		// TODO: check
+
+		if (region.getPlayer() == null) {
+			region.setPlayer(player);
+			return;
+		}
+
+		for (Region r : region.getNeighbours()) {
+			if (r.getPlayer() != null && !player.equals(r.getPlayer())) {
+				makeMove(player, r);
+			}
+		}
+
+		region.setPlayer(player);
+	}
+
+
+	public boolean isGameOver() {
+		// TODO: doublecheck
+
+		Player player = null;
+		for (Region region : regions) {
+			Player regionPlayer = region.getPlayer();
+
+			if (player == null) {
+				player = regionPlayer;
+			}
+
+			if (player != null && regionPlayer != null && !player.equals(regionPlayer)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

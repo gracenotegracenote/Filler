@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.GameMap;
 import models.JSONParser;
+import models.Player;
 import models.Region;
 import models.RegionJson;
 import views.Pane;
@@ -16,6 +17,7 @@ import views.Pane;
 public class Controller extends Application {
 	private GameMap map;
 
+	private Player currentPlayer;
 	private boolean isAi;
 
 
