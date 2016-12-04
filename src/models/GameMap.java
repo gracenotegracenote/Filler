@@ -2,6 +2,8 @@ package models;
 
 import java.util.List;
 
+import generators.ColorGenerator;
+
 /**
  * Author: Liudmila Kachurina (https://github.com/gracenotegracenote)
  * Date: 04-Dec-16
@@ -19,6 +21,8 @@ public class GameMap {
 
 		double minX = Double.MIN_VALUE;
 		double minY = Double.MIN_VALUE;
+
+		ColorGenerator generator = new ColorGenerator();
 		for (Region region: regions) {
 			for (Point point : region.getBoundary()) {
 				if (point.getX() < minX) {
@@ -28,6 +32,8 @@ public class GameMap {
 				if (point.getY() < minY) {
 					minY = point.getY();
 				}
+
+				region.setColor(generator.generate(region.getNeighbours()));
 			}
 		}
 
