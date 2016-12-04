@@ -14,13 +14,11 @@ import views.Pane;
  * Created by gracenote on 04-Dec-16.
  */
 public class Controller extends Application {
-	private static String COUNTRY_JSON_FILENAME = "jsondata/countries.json";
-
 	private GameMap map;
 
 
 	public Controller() {
-		List<RegionJson> regionsJson = JSONParser.getRegions(COUNTRY_JSON_FILENAME);
+		List<RegionJson> regionsJson = JSONParser.getRegions(Config.REGION_JSON_FILENAME);
 
 		// Converting to Regions
 		List<Region> regions = new ArrayList<>();
@@ -35,7 +33,7 @@ public class Controller extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = new Pane();
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root, Config.SCENE_WIDTH, Config.SCENE_HEIGHT);
         primaryStage = new Stage();
         primaryStage.setScene(scene);
         primaryStage.show();

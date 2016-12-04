@@ -21,15 +21,12 @@ public class GameMap {
 		double minY = Double.MIN_VALUE;
 		for (Region region: regions) {
 			for (Point point : region.getBoundary()) {
-				double x = point.getX();
-				double y = point.getY();
-
-				if (x < minX) {
-					minX = x;
+				if (point.getX() < minX) {
+					minX = point.getX();
 				}
 
-				if (y < minY) {
-					minY = y;
+				if (point.getY() < minY) {
+					minY = point.getY();
 				}
 			}
 		}
