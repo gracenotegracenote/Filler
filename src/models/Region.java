@@ -11,8 +11,8 @@ public class Region {
 
 	private int id = 0;
 	private String name;
-	private List<Coordinates> boundary;
-	private List <Coordinates> holes;
+	private List<Point> boundary;
+	private List <Point> holes;
 	private List<Region> neighbours;
 
 	private Player player;
@@ -39,13 +39,13 @@ public class Region {
 
 		double[][] boundaryArray = region.getBoundary();
 		for (int i = 0; i < boundaryArray.length; i++) {
-			boundary.add(new Coordinates(boundaryArray[i][0], boundaryArray[i][1]));
+			boundary.add(new Point(boundaryArray[i][0], boundaryArray[i][1]));
 		}
 
 		if (region.getHoles().length > 0) {
 			double[][] holeArray = region.getHoles()[0]; // 1 dimension is completely useless... therefore there is [0] at the end...
 			for (int i = 0; i < holeArray.length; i++) {
-				boundary.add(new Coordinates(holeArray[i][0], holeArray[i][1]));
+				boundary.add(new Point(holeArray[i][0], holeArray[i][1]));
 			}
 		}
 	}
@@ -61,22 +61,22 @@ public class Region {
 	}
 
 
-	public List<Coordinates> getBoundary() {
+	public List<Point> getBoundary() {
 		return boundary;
 	}
 
 
-	public void setBoundary(List<Coordinates> boundary) {
+	public void setBoundary(List<Point> boundary) {
 		this.boundary = boundary;
 	}
 
 
-	public List<Coordinates> getHoles() {
+	public List<Point> getHoles() {
 		return holes;
 	}
 
 
-	public void setHoles(List<Coordinates> holes) {
+	public void setHoles(List<Point> holes) {
 		this.holes = holes;
 	}
 
@@ -97,8 +97,8 @@ public class Region {
 
 
 	public boolean isNeighbour(Region region) {
-		for (Coordinates boundary : this.boundary) {
-			for (Coordinates boundary2 : region.getBoundary()) {
+		for (Point boundary : this.boundary) {
+			for (Point boundary2 : region.getBoundary()) {
 				if (boundary.equals(boundary2)) {
 					return true;
 				}

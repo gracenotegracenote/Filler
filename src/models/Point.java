@@ -3,15 +3,15 @@ package models;
 /**
  * Created by svchost on 25/11/2016.
  */
-public class Coordinates {
+public class Point {
 	private double x;
 	private double y;
 
 
-	public Coordinates() {}
+	public Point() {}
 
 
-	public Coordinates(double x, double y) {
+	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -42,7 +42,7 @@ public class Coordinates {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		Coordinates that = (Coordinates) o;
+		Point that = (Point) o;
 
 		return that.x == x && that.y == y;
 	}
