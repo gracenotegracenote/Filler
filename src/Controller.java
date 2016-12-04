@@ -16,6 +16,8 @@ import views.Pane;
 public class Controller extends Application {
 	private GameMap map;
 
+	private boolean isAi;
+
 
 	public Controller() {
 		List<RegionJson> regionsJson = JSONParser.getRegions(Config.REGION_JSON_FILENAME);
@@ -27,6 +29,8 @@ public class Controller extends Application {
 		}
 
 		map = new GameMap(regions);
+
+		isAi = false; // TODO: DO
 	}
 
 
